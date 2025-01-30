@@ -1,11 +1,21 @@
 <style>
-    /* Center the form */
-    .otp-container {
+    /* Load the correct Equals Bold font */
+    @font-face {
+        font-family: "Equals";
+        src: url("https://cdn.equals.co/fonts/equals/equals-bold.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+    }
+
+    /* Apply font and general styling */
+    body {
+        font-family: "Equals", sans-serif;
+        background-color: #f9f9f9;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background-color: #f9f9f9;
+        margin: 0;
     }
 
     /* OTP Box */
@@ -19,49 +29,61 @@
         width: 90%;
     }
 
+    /* Heading */
+    .otp-box h1 {
+        font-size: 22px;
+        font-weight: 700;
+        color: #ffb900;
+        margin-bottom: 10px;
+    }
+
     /* OTP Input */
     .otp-input {
         width: 100%;
-        font-size: 18px;
+        font-size: 22px;
         text-align: center;
         padding: 10px;
-        border: 1px solid #ccc;
+        border: 2px solid #ffb900;
         border-radius: 5px;
         outline: none;
+        font-weight: 700;
+    }
+
+    .otp-input:focus {
+        border-color: #ff9800;
     }
 
     /* Button */
     .otp-submit {
         margin-top: 15px;
-        background-color: #007bff;
+        background-color: #ffb900;
         color: white;
-        font-size: 16px;
+        font-size: 22px;
         padding: 10px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
         width: 100%;
+        font-weight: 700;
     }
 
     .otp-submit:hover {
-        background-color: #0056b3;
+        background-color: #ff9800;
     }
 </style>
 
-<div class="otp-container">
-    <div class="otp-box">
-        <h1>Enter Your OTP Code</h1>
-        <p>Please enter the 6-digit code sent to your phone or email.</p>
+<div class="otp-box">
+    <h1>Enter Your OTP Code</h1>
+    <p>Please enter the 6-digit code sent to your phone or email.</p>
 
-        <form action="#" id="otpVerificationForm">
-            <input name="otp" id="otp-input" type="text" 
-                inputmode="numeric" pattern="[0-9]{6}" 
-                autocomplete="one-time-code" required 
-                maxlength="6" minlength="6" class="otp-input">
-            
-            <button type="submit" class="otp-submit">Verify OTP</button>
-        </form>
-    </div>
+    <form action="#" id="otpVerificationForm">
+        <input name="otp" id="otp-input" type="text" 
+            inputmode="numeric" pattern="[0-9]{6}" 
+            autocomplete="one-time-code" required 
+            maxlength="6" minlength="6" class="otp-input">
+        
+        <button type="submit" class="otp-submit">Verify OTP</button>
+    </form>
 </div>
 
 <!-- Script to Ensure OTP is Valid -->
